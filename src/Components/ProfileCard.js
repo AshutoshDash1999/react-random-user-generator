@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { ImKey } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
+import UserInfoButton from "./UserInfoButton";
 
 function ProfileCard(props) {
   const [profileData, setProfileData] = useState(
@@ -35,34 +36,40 @@ function ProfileCard(props) {
     setProfileData(`UserID: ${props.username}; Password: ${props.password}`);
   };
 
-  const buttonStyle = `user-info-btn p-4 mx-4 my-8 rounded-md whitespace-normal ${props.color} transition ease-in-out shadow-2xl`;
+  const buttonStyle = `user-info-btn p-4 mx-4 my-8 rounded-md whitespace-normal hover:bg-${props.color} transition-all ease-in-out shadow-2xl`;
 
   return (
     <div
-      className={`random-user-box p-8 rounded-xl w-1/2 max-h-fit transition ease-in-out duration-300`}
+      className={`random-user-box p-8 rounded-xl w-1/2 max-h-fit transition-all ease-in-out duration-300`}
     >
       <div className="mx-auto flex justify-center">
         <img className="rounded-full" src={props.picture} alt="" />
       </div>
       <div>{profileData}</div>
       <div className="flex justify-center items-center flex-wrap	">
-        <div onMouseEnter={showName} className={buttonStyle}>
-          <FaUser />
+        <div onMouseEnter={showName}>
+          <UserInfoButton text={<FaUser />} color={`bg-${props.color}`} />
         </div>
-        <div onMouseEnter={showMail} className={buttonStyle}>
-          <MdEmail />
+        <div onMouseEnter={showMail}>
+          <UserInfoButton text={<MdEmail />} color={`bg-${props.color}`} />
         </div>
-        <div onMouseEnter={showPhone} className={buttonStyle}>
-          <FaPhoneAlt />
+        <div onMouseEnter={showPhone}>
+          <UserInfoButton text={<FaPhoneAlt />} color={`bg-${props.color}`} />
         </div>
-        <div onMouseEnter={showDOB} className={buttonStyle}>
-          <FaCalendarAlt />
+        <div onMouseEnter={showDOB}>
+          <UserInfoButton
+            text={<FaCalendarAlt />}
+            color={`bg-${props.color}`}
+          />
         </div>
-        <div onMouseEnter={showAddress} className={buttonStyle}>
-          <FaLocationArrow />
+        <div onMouseEnter={showAddress}>
+          <UserInfoButton
+            text={<FaLocationArrow />}
+            color={`bg-${props.color}`}
+          />
         </div>
-        <div onMouseEnter={showIdPassword} className={buttonStyle}>
-          <ImKey />
+        <div onMouseEnter={showIdPassword}>
+          <UserInfoButton text={<ImKey />} color={`bg-${props.color}`} />
         </div>
       </div>
     </div>

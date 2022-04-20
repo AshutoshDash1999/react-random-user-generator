@@ -22,6 +22,10 @@
   box-shadow: 5px 5px 10px #1a1c21, -5px -5px 10px #363c47;
 }
 
+.user-info-btn:hover:after {
+  width: 100%;
+}
+
 .user-generate-btn {
   box-shadow: 5px 5px 11px #1942b8, -5px -5px 10px #363c47;
   z-index: 1;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { useEffect } from "react";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "./Components/ProfileCard";
 import { Bars } from "react-loader-spinner";
 
 function App() {
@@ -28,23 +28,23 @@ function App() {
   // console.log(userData.name.title);
 
   const colorList = [
-    "hover:bg-red-700",
-    "hover:bg-orange-700",
-    "hover:bg-amber-700",
-    "hover:bg-yellow-700",
-    "hover:bg-lime-700",
-    "hover:bg-green-700",
-    "hover:bg-emerald-700",
-    "hover:bg-teal-700",
-    "hover:bg-cyan-700",
-    "hover:bg-violet-700",
-    "hover:bg-purple-700",
-    "hover:bg-fuchsia-700",
-    "hover:bg-pink-700",
-    "hover:bg-rose-700",
-    "hover:bg-indigo-700",
-    "hover:bg-blue-700",
-    "hover:bg-cyan-700",
+    "red-700",
+    "orange-700",
+    "amber-700",
+    "yellow-700",
+    "lime-700",
+    "green-700",
+    "emerald-700",
+    "teal-700",
+    "cyan-700",
+    "violet-700",
+    "purple-700",
+    "fuchsia-700",
+    "pink-700",
+    "rose-700",
+    "indigo-700",
+    "blue-700",
+    "cyan-700",
   ];
 
   useEffect(() => {
