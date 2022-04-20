@@ -3,38 +3,11 @@ import "./App.css";
 import axios from "axios";
 import { useEffect } from "react";
 import ProfileCard from "./ProfileCard";
+import { Bars } from "react-loader-spinner";
 
 function App() {
-  const [genderFilter, setGenderFilter] = useState("");
-  const [name] = useState({
-    title: "",
-    first: "",
-    last: "",
-  });
-
-  const [contact] = useState({
-    email: "",
-    phone: "",
-  });
-
-  const [dob] = useState({
-    age: "",
-    date: "",
-  });
-
-  const [location] = useState({
-    city: "",
-    state: "",
-    country: "",
-    postcode: "",
-  });
-
-  const [picture, setPicture] = useState("");
-
-  const [login] = useState({
-    username: "",
-    password: "",
-  });
+  const [userData, setUserData] = useState("");
+  const [buttonText, setButtonText] = useState("Generate New User");
   const [ascentColor, setAscentColor] = useState("");
 
   const apiURL = "https://randomuser.me/api/";
@@ -43,33 +16,16 @@ function App() {
     axios
       .get(url)
       .then((response) => {
-        const userData = response.data.results[0];
+        setUserData(response.data.results[0]);
         // console.log(userData);
-        name.title = userData.name.title;
-        name.first = userData.name.first;
-        name.last = userData.name.last;
-
-        contact.email = userData.email;
-        contact.phone = userData.phone;
-
-        dob.age = userData.dob.age;
-        dob.date = new Date(userData.dob.date).toDateString();
-
-        location.city = userData.location.city;
-        location.state = userData.location.state;
-        location.country = userData.location.country;
-        location.postcode = userData.location.postcode;
-
-        login.username = userData.login.username;
-        login.password = userData.login.password;
-
-        setPicture(userData.picture.large);
       })
       .catch((error) => {
         alert("Something went wrong");
         console.log(error);
       });
   };
+
+  // console.log(userData.name.title);
 
   const colorList = [
     "hover:bg-red-700",
@@ -99,26 +55,46 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {name.first ? (
+        <button
+          className="user-generate-btn rounded-lg bg-blue-600 p-4 mb-8"
+          onClick={() => {
+            setButtonText(`Genarating...`);
+            apiCall(apiURL);
+            setAscentColor(
+              colorList[Math.floor(Math.random() * colorList.length)]
+            );
+            setInterval(() => {
+              setButtonText("Genarate New User");
+            }, 1000);
+          }}
+        >
+          {buttonText}
+        </button>
+        {userData ? (
           <ProfileCard
-            picture={picture}
-            title={name.title}
-            firstName={name.first}
-            lastName={name.last}
-            email={contact.email}
-            phone={contact.phone}
-            dob={dob.date}
-            age={dob.age}
-            city={location.city}
-            state={location.state}
-            country={location.country}
-            postcode={location.postcode}
-            username={login.username}
-            password={login.password}
+            picture={userData.picture.large}
+            title={userData.name.title}
+            firstName={userData.name.first}
+            lastName={userData.name.last}
+            email={userData.email}
+            phone={userData.phone}
+            dob={new Date(userData.dob.date).toDateString()}
+            age={userData.dob.age}
+            city={userData.location.city}
+            state={userData.location.state}
+            country={userData.location.country}
+            postcode={userData.location.postcode}
+            username={userData.login.username}
+            password={userData.login.password}
             color={ascentColor}
           />
         ) : (
-          <h1>Waiting for data....</h1>
+          <Bars
+            heigth="100"
+            width="200"
+            color="white"
+            ariaLabel="loading-indicator"
+          />
         )}
       </header>
     </div>

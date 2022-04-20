@@ -21,3 +21,14 @@
 .user-info-btn {
   box-shadow: 5px 5px 10px #1a1c21, -5px -5px 10px #363c47;
 }
+
+.user-generate-btn {
+  box-shadow: 5px 5px 11px #1942b8, -5px -5px 10px #363c47;
+  z-index: 1;
+  transition: ease-in-out 0.3s;
+}
+
+.user-generate-btn:active {
+  box-shadow: inset 5px 5px 11px #1841b3, inset -5px -5px 11px #225bfd;
+  transform: scale(0.98);
+}

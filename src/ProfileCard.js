@@ -37,8 +37,6 @@ function ProfileCard(props) {
 
   const buttonStyle = `user-info-btn p-4 mx-4 my-8 rounded-md whitespace-normal ${props.color} transition ease-in-out shadow-2xl`;
 
-  console.log(`${props.color}`);
-
   return (
     <div
       className={`random-user-box p-8 rounded-xl w-1/2 max-h-fit transition ease-in-out duration-300`}
