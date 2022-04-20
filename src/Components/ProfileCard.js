@@ -36,40 +36,37 @@ function ProfileCard(props) {
     setProfileData(`UserID: ${props.username}; Password: ${props.password}`);
   };
 
-  const buttonStyle = `user-info-btn p-4 mx-4 my-8 rounded-md whitespace-normal hover:bg-${props.color} transition-all ease-in-out shadow-2xl`;
-
+  // console.log(props.color);
   return (
     <div
       className={`random-user-box p-8 rounded-xl w-1/2 max-h-fit transition-all ease-in-out duration-300`}
     >
       <div className="mx-auto flex justify-center">
-        <img className="rounded-full" src={props.picture} alt="" />
+        <img
+          className="rounded-full"
+          src={props.picture}
+          alt="user profile pic"
+        />
       </div>
       <div>{profileData}</div>
       <div className="flex justify-center items-center flex-wrap	">
         <div onMouseEnter={showName}>
-          <UserInfoButton text={<FaUser />} color={`bg-${props.color}`} />
+          <UserInfoButton text={<FaUser />} btnColor={props.color} />
         </div>
         <div onMouseEnter={showMail}>
-          <UserInfoButton text={<MdEmail />} color={`bg-${props.color}`} />
+          <UserInfoButton text={<MdEmail />} btnColor={props.color} />
         </div>
         <div onMouseEnter={showPhone}>
-          <UserInfoButton text={<FaPhoneAlt />} color={`bg-${props.color}`} />
+          <UserInfoButton text={<FaPhoneAlt />} btnColor={props.color} />
         </div>
         <div onMouseEnter={showDOB}>
-          <UserInfoButton
-            text={<FaCalendarAlt />}
-            color={`bg-${props.color}`}
-          />
+          <UserInfoButton text={<FaCalendarAlt />} btnColor={props.color} />
         </div>
         <div onMouseEnter={showAddress}>
-          <UserInfoButton
-            text={<FaLocationArrow />}
-            color={`bg-${props.color}`}
-          />
+          <UserInfoButton text={<FaLocationArrow />} btnColor={props.color} />
         </div>
         <div onMouseEnter={showIdPassword}>
-          <UserInfoButton text={<ImKey />} color={`bg-${props.color}`} />
+          <UserInfoButton text={<ImKey />} btnColor={props.color} />
         </div>
       </div>
     </div>
