@@ -51,22 +51,22 @@ function ProfileCard(props) {
       <div>{profileData}</div>
       <div className="flex justify-center items-center flex-wrap	">
         <div onMouseEnter={showName}>
-          <UserInfoButton text={<FaUser />} btnColor={props.color} />
+          <UserInfoButton text={<FaUser />} />
         </div>
         <div onMouseEnter={showMail}>
-          <UserInfoButton text={<MdEmail />} btnColor={props.color} />
+          <UserInfoButton text={<MdEmail />} />
         </div>
         <div onMouseEnter={showPhone}>
-          <UserInfoButton text={<FaPhoneAlt />} btnColor={props.color} />
+          <UserInfoButton text={<FaPhoneAlt />} />
         </div>
         <div onMouseEnter={showDOB}>
-          <UserInfoButton text={<FaCalendarAlt />} btnColor={props.color} />
+          <UserInfoButton text={<FaCalendarAlt />} />
         </div>
         <div onMouseEnter={showAddress}>
-          <UserInfoButton text={<FaLocationArrow />} btnColor={props.color} />
+          <UserInfoButton text={<FaLocationArrow />} />
         </div>
         <div onMouseEnter={showIdPassword}>
-          <UserInfoButton text={<ImKey />} btnColor={props.color} />
+          <UserInfoButton text={<ImKey />} />
         </div>
       </div>
     </div>

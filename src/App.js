@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { useEffect } from "react";
 import ProfileCard from "./Components/ProfileCard";
 import { Bars } from "react-loader-spinner";
+import { FcLike } from "react-icons/fc";
 
+const ThemeContext = createContext();
 function App() {
   const [userData, setUserData] = useState("");
   const [buttonText, setButtonText] = useState("Generate New User");
@@ -54,51 +56,67 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button
-          className="user-generate-btn rounded-lg bg-blue-600 p-4 mb-8"
-          onClick={() => {
-            setButtonText(`Genarating...`);
-            apiCall(apiURL);
-            setAscentColor(
-              colorList[Math.floor(Math.random() * colorList.length)]
-            );
-            setInterval(() => {
-              setButtonText("Genarate New User");
-            }, 1000);
-          }}
-        >
-          {buttonText}
-        </button>
-        {userData ? (
-          <ProfileCard
-            picture={userData.picture.large}
-            title={userData.name.title}
-            firstName={userData.name.first}
-            lastName={userData.name.last}
-            email={userData.email}
-            phone={userData.phone}
-            dob={new Date(userData.dob.date).toDateString()}
-            age={userData.dob.age}
-            city={userData.location.city}
-            state={userData.location.state}
-            country={userData.location.country}
-            postcode={userData.location.postcode}
-            username={userData.login.username}
-            password={userData.login.password}
-            color={ascentColor}
-          />
-        ) : (
-          <Bars
-            heigth="100"
-            width="200"
-            color="white"
-            ariaLabel="loading-indicator"
-          />
-        )}
+      <header className="App-header p-8">
+        <h1 className="text-4xl mb-12">
+          Random <span className="text-orange-500">User Generator</span>
+        </h1>
+        <ThemeContext.Provider value={ascentColor}>
+          <button
+            className="user-generate-btn rounded-lg bg-blue-600 hover:bg-blue-700 p-4 mb-8"
+            onClick={() => {
+              setButtonText(`Genarating...`);
+              apiCall(apiURL);
+              setAscentColor(
+                colorList[Math.floor(Math.random() * colorList.length)]
+              );
+              setInterval(() => {
+                setButtonText("Genarate New User");
+              }, 1000);
+            }}
+          >
+            {buttonText}
+          </button>
+          {userData ? (
+            <ProfileCard
+              picture={userData.picture.large}
+              title={userData.name.title}
+              firstName={userData.name.first}
+              lastName={userData.name.last}
+              email={userData.email}
+              phone={userData.phone}
+              dob={new Date(userData.dob.date).toDateString()}
+              age={userData.dob.age}
+              city={userData.location.city}
+              state={userData.location.state}
+              country={userData.location.country}
+              postcode={userData.location.postcode}
+              username={userData.login.username}
+              password={userData.login.password}
+            />
+          ) : (
+            <Bars
+              heigth="100"
+              width="200"
+              color="white"
+              ariaLabel="loading-indicator"
+            />
+          )}
+        </ThemeContext.Provider>
+        <footer className="flex justify-around mt-20">
+          Made with &nbsp;
+          <FcLike />
+          &nbsp; by &nbsp;
+          <a
+            className="underline underline-offset-4"
+            href="https://ashutoshdash.netlify.app/"
+          >
+            Ashutosh Dash
+          </a>
+        </footer>
       </header>
     </div>
   );
 }
 
 export default App;
+export { ThemeContext };
