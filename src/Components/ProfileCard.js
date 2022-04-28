@@ -9,12 +9,12 @@ import {
 import { ImKey } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
 import UserInfoButton from "./UserInfoButton";
+import { ToastContainer, toast } from "react-toastify";
 
 function ProfileCard(props) {
   const [profileData, setProfileData] = useState(
     `${props.title}. ${props.firstName} ${props.lastName}`
   );
-
   const showName = () => {
     setProfileData(`${props.title}. ${props.firstName} ${props.lastName}`);
   };
@@ -36,6 +36,11 @@ function ProfileCard(props) {
     setProfileData(`UserID: ${props.username}; Password: ${props.password}`);
   };
 
+  const clickToCopy = () => {
+    navigator.clipboard.writeText(profileData);
+    toast.success("Copied to Clipboard!", { autoClose: 1500 });
+  };
+
   // console.log(props.color);
   return (
     <div
@@ -50,22 +55,22 @@ function ProfileCard(props) {
       </div>
       <div>{profileData}</div>
       <div className="flex justify-center items-center flex-wrap	">
-        <div onMouseEnter={showName}>
+        <div onMouseEnter={showName} onClick={() => clickToCopy()}>
           <UserInfoButton text={<FaUser />} />
         </div>
-        <div onMouseEnter={showMail}>
+        <div onMouseEnter={showMail} onClick={() => clickToCopy()}>
           <UserInfoButton text={<MdEmail />} />
         </div>
-        <div onMouseEnter={showPhone}>
+        <div onMouseEnter={showPhone} onClick={() => clickToCopy()}>
           <UserInfoButton text={<FaPhoneAlt />} />
         </div>
-        <div onMouseEnter={showDOB}>
+        <div onMouseEnter={showDOB} onClick={() => clickToCopy()}>
           <UserInfoButton text={<FaCalendarAlt />} />
         </div>
-        <div onMouseEnter={showAddress}>
+        <div onMouseEnter={showAddress} onClick={() => clickToCopy()}>
           <UserInfoButton text={<FaLocationArrow />} />
         </div>
-        <div onMouseEnter={showIdPassword}>
+        <div onMouseEnter={showIdPassword} onClick={() => clickToCopy()}>
           <UserInfoButton text={<ImKey />} />
         </div>
       </div>

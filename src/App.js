@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import ProfileCard from "./Components/ProfileCard";
 import { Bars } from "react-loader-spinner";
 import { FcLike } from "react-icons/fc";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ThemeContext = createContext();
 function App() {
@@ -56,8 +58,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header p-8">
-        <h1 className="text-4xl mb-12">
+      <header className="App-header p-8 h-screen">
+        <ToastContainer toastClassName="dark-toast" />
+        <h1 className="text-xl md:text-2xl xl:text-4xl mb-12">
           Random <span className="text-orange-500">User Generator</span>
         </h1>
         <ThemeContext.Provider value={ascentColor}>
